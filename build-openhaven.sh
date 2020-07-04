@@ -54,7 +54,7 @@ echo "Compiling patched openmonero code..."
 pushd openmonero > /dev/null 2>&1
 mkdir build
 pushd build > /dev/null 2>&1
-cmake .. -DMONERO_DIR=~/haven-protocol/monero -DMONERO_BUILD_DIR=~/haven-protocol/monero/
+cmake .. -DMONERO_DIR=~/haven-protocol/monero -DMONERO_BUILD_DIR=~/haven-protocol/monero/build/release
 make $@
 
 popd > /dev/null 2>&1
