@@ -1,22 +1,21 @@
---- FindMonero.cmake	2020-07-04 09:45:31.079978300 +0200
-+++ FindMonero.cmake.xhv	2020-07-04 09:51:00.749566600 +0200
+--- FindMonero.cmake	2020-07-04 12:09:06.859125200 +0200
++++ FindMonero.cmake.xhv	2020-07-04 12:09:19.638942500 +0200
 @@ -31,7 +31,7 @@
  #set(LIBS        common;blocks;cryptonote_basic;cryptonote_core;
  #		cryptonote_protocol;daemonizer;mnemonics;epee;lmdb;device;
  #                blockchain_db;ringct;wallet;cncrypto;easylogging;version;checkpoints;
 -#                ringct_basic;randomx;hardforks)
-+#                ringct_basic)
++#                ringct_basic;offshore)
  
  
  if (NOT MONERO_DIR)
-@@ -81,9 +81,7 @@
-           epee
+@@ -82,8 +82,7 @@
            checkpoints
            version
--          cncrypto
+           cncrypto
 -          randomx
 -          hardforks)
-+          cncrypto)
++          offshore)
  
  set(Xmr_INCLUDE_DIRS "${CPP_MONERO_DIR}")
  

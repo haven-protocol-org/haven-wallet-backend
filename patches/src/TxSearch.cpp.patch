@@ -1,0 +1,13 @@
+--- TxSearch.cpp	2020-07-04 09:56:54.686681200 +0200
++++ TxSearch.cpp.xhv	2020-07-04 12:06:05.812580300 +0200
+@@ -961,9 +961,7 @@
+ string
+ TxSearch::get_viewkey() const
+ {
+-    static string viewkey = pod_to_hex(this->viewkey);
+-
+-    return viewkey;
++    return pod_to_hex(this->viewkey);
+ }
+ 
+ 
