@@ -1,0 +1,11 @@
+--- utils.cpp	2020-07-04 09:45:26.820078500 +0200
++++ utils.cpp.xhv	2020-07-04 09:52:27.659833400 +0200
+@@ -1240,7 +1240,7 @@
+         {
+             transaction tx;
+ 
+-            if (!parse_and_validate_tx_from_blob(tx_blob.blob, tx))
++            if (!parse_and_validate_tx_from_blob(tx_blob, tx))
+                 return false;
+ 
+             txs.push_back(tx);
