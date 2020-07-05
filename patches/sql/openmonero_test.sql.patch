@@ -1,0 +1,11 @@
+--- openmonero_test.sql	2020-07-05 10:04:41.373549500 +0200
++++ openmonero_test.sql.xhv	2020-07-05 12:06:48.259506700 +0200
+@@ -35,7 +35,7 @@
+ DROP TABLE IF EXISTS `Accounts`;
+ CREATE TABLE IF NOT EXISTS `Accounts` (
+   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+-  `address` varchar(95) NOT NULL,
++  `address` varchar(100) NOT NULL,
+   `viewkey_hash` char(64) NOT NULL,
+   `scanned_block_height` int(10) UNSIGNED NOT NULL DEFAULT '0',
+   `scanned_block_timestamp` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
