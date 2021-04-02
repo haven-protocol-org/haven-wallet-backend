@@ -1,5 +1,5 @@
 --- README.md	2021-03-23 20:58:46.594467655 -0700
-+++ README.md.xhv	2021-03-31 04:32:57.490000000 -0700
++++ README.md.xhv	2021-04-01 20:23:40.495981674 -0700
 @@ -313,6 +313,40 @@
  var api_minor = response.data.api & 0xffff;
  ```
@@ -41,129 +41,130 @@
  
  ### login
  
-@@ -339,98 +373,62 @@
+@@ -339,6 +373,7 @@
  ```json
  {"generated_locally":false,"new_address":true,"start_height":0,"status":"success"}
  ```
--#### get_address_txs
- 
--Get the list of all txs for the given user with their possible spendings.
-+#### get_address_transfers
 +
-+Get the list of transfers for the given user with their possible spendings.
+ #### get_address_txs
  
- ```bash
--curl  -w "\n" -X POST http://127.0.0.1:1984/get_address_txs -d '{"address": "A2VTvE8bC9APsWFn3mQzgW8Xfcy2SP2CRUArD6ZtthNaWDuuvyhtBcZ8WDuYMRt1HhcnNQvpXVUavEiZ9waTbyBhP6RM8TV", "view_key": "041a241325326f9d86519b714a9b7f78b29111551757eeb6334d39c21f8b7400"}'
-+curl  -w "\n" -X POST http://127.0.0.1:1984/get_address_transfers -d '{"address": "A2VTvE8bC9APsWFn3mQzgW8Xfcy2SP2CRUArD6ZtthNaWDuuvyhtBcZ8WDuYMRt1HhcnNQvpXVUavEiZ9waTbyBhP6RM8TV", "view_key": "041a241325326f9d86519b714a9b7f78b29111551757eeb6334d39c21f8b7400", "asset_type": "XHV"}'
- ```
- 
- Output (only part shown):
- 
- ```json
- {
--  "blockchain_height": 965512,
--  "new_address": false,
--  "scanned_block_height": 961405,
--  "scanned_block_timestamp": 1500969813,
--  "scanned_height": 0,
--  "start_height": 957190,
--  "status": "success",
+ Get the list of all txs for the given user with their possible spendings.
+@@ -358,11 +393,18 @@
+   "scanned_height": 0,
+   "start_height": 957190,
+   "status": "success",
 -  "total_received": 32594830001895764,
 -  "total_received_unlocked": 32594830001895764,
--  "transactions": [
-+  "in": [
++  "total_xau_received": 683584012406,
++  "total_xau_received_unlocked": 683584012406,
++  "total_xhv_received": 43388479628538,
++  "total_xhv_received_unlocked": 43388479628538,
++  "total_xusd_received": 3683584012406,
++  "total_xusd_received_unlocked": 3683584012406,
++  // "total_" + xAsset + "_received": <Integer>,
++  // "total_" + xAsset + "_received_unlocked": <Integer>,
+   "transactions": [
      {
--      "coinbase": false,
--      "hash": "2877c449a7a9f0a507c7a6e4ae17b43d96dc44369092e57adc4e6d9ddcde1a68",
-+      "tx_hash": "2877c449a7a9f0a507c7a6e4ae17b43d96dc44369092e57adc4e6d9ddcde1a68",
+       "coinbase": false,
++      "from_asset_type": "XHV",
+       "hash": "2877c449a7a9f0a507c7a6e4ae17b43d96dc44369092e57adc4e6d9ddcde1a68",
        "height": 812669,
--      "id": 831631,
--      "mempool": false,
--      "mixin": 4,
-       "payment_id": "",
--      "spent_outputs": [
--        {
--          "amount": 13659082425875,
--          "key_image": "0b6a04e1a1d7f149a8e8aeb91047b8ab4722de50554b88af4ed7646fd1929947",
--          "mixin": 0,
--          "out_index": 0,
--          "tx_pub_key": ""
--        }
--      ],
-+      "amount": 13659082425875,
-+      "asset_type": "XHV",
+       "id": 831631,
+@@ -372,6 +414,7 @@
+       "spent_outputs": [
+         {
+           "amount": 13659082425875,
++          "asset_type": "XHV",
+           "key_image": "0b6a04e1a1d7f149a8e8aeb91047b8ab4722de50554b88af4ed7646fd1929947",
+           "mixin": 0,
+           "out_index": 0,
+@@ -379,13 +422,15 @@
+         }
+       ],
        "timestamp": 1482567670,
 -      "total_received": 0,
 -      "total_sent": 13659082425875,
--      "tx_pub_key": "41bd5cb51aa26fb58d41acd25711a7ecc2d19be0c24b296a9e362aebee61d4d0",
++      "to_asset_type": "XHV",
++      "total_xhv_received": 0,
++      "total_xhv_sent": 13659082425875,
+       "tx_pub_key": "41bd5cb51aa26fb58d41acd25711a7ecc2d19be0c24b296a9e362aebee61d4d0",
        "unlock_time": 0
      },
      {
--      "coinbase": true,
--      "hash": "1f76938b4deceb9e0722f02f4477006d3e96e2331552f726c47f297977434b9c",
-+      "tx_hash": "1f76938b4deceb9e0722f02f4477006d3e96e2331552f726c47f297977434b9c",
+       "coinbase": true,
++      "from_asset_type": "XHV",
+       "hash": "1f76938b4deceb9e0722f02f4477006d3e96e2331552f726c47f297977434b9c",
        "height": 818908,
--      "id": 838719,
--      "mempool": false,
--      "mixin": 0,
+       "id": 838719,
+@@ -393,13 +438,15 @@
+       "mixin": 0,
        "payment_id": "",
-+      "amount": 13388479628538,
-+      "asset_type": "XHV",
        "timestamp": 1483311688,
 -      "total_received": 13388479628538,
 -      "total_sent": 0,
--      "tx_pub_key": "3c71217add3b7882e8370fe6b903bc48059a79580af5e095485afc88b3126d09",
++      "to_asset_type": "XHV",
++      "total_xhv_received": 13388479628538,
++      "total_xhv_sent": 0,
+       "tx_pub_key": "3c71217add3b7882e8370fe6b903bc48059a79580af5e095485afc88b3126d09",
        "unlock_time": 818968
--    },
-+    }
-+  ],
-+  "out": [
+     },
      {
--      "coinbase": false,
--      "hash": "53cb70ded276fbfcc68c98a8d9577b42c543bf1094d6cbb151fa05c9edb457be",
-+      "tx_hash": "53cb70ded276fbfcc68c98a8d9577b42c543bf1094d6cbb151fa05c9edb457be",
+       "coinbase": false,
++      "from_asset_type": "XHV",
+       "hash": "53cb70ded276fbfcc68c98a8d9577b42c543bf1094d6cbb151fa05c9edb457be",
        "height": 818921,
--      "id": 838735,
--      "mempool": false,
--      "mixin": 5,
+       "id": 838735,
+@@ -408,7 +455,8 @@
        "payment_id": "",
--      "spent_outputs": [
--        {
+       "spent_outputs": [
+         {
 -          "amount": 13683584012406,
--          "key_image": "437518836c315bf989c5cc28b935280345ed672d727122f6d6c5c5ff32e98224",
--          "mixin": 0,
--          "out_index": 0,
--          "tx_pub_key": ""
--        }
--      ],
-+      "amount": 13683584012406,
-+      "asset_type": "XHV",
++          "amount": 12648774828503,
++          "asset_type": "XHV",
+           "key_image": "437518836c315bf989c5cc28b935280345ed672d727122f6d6c5c5ff32e98224",
+           "mixin": 0,
+           "out_index": 0,
+@@ -416,10 +464,37 @@
+         }
+       ],
        "timestamp": 1483313063,
 -      "total_received": 12648774828503,
 -      "total_sent": 13683584012406,
--      "tx_pub_key": "3eac7a5ce7dc0cc78172522cef4591a43b0e9aab643ac3b57554fd0dbc8ba86a",
++      "to_asset_type": "XUSD",
++      "total_xhv_sent": 12648774828503,
++      "total_xusd_received": 3683584012406,
+       "tx_pub_key": "3eac7a5ce7dc0cc78172522cef4591a43b0e9aab643ac3b57554fd0dbc8ba86a",
        "unlock_time": 0
++    },
++    {
++      "coinbase": false,
++      "from_asset_type": "XUSD",
++      "hash": "a3cb70ded276fbfcc68c98a8d9577b42c543bf1094d6cbb151fa05c9edb457be",
++      "height": 848921,
++      "id": 848735,
++      "mempool": false,
++      "mixin": 5,
++      "payment_id": "",
++      "spent_outputs": [
++        {
++          "amount": 683584012406,
++          "asset_type": "XUSD",
++          "key_image": "937518836c315bf989c5cc28b935280345ed672d727122f6d6c5c5ff32e98224",
++          "mixin": 0,
++          "out_index": 0,
++          "tx_pub_key": ""
++        }
++      ],
++      "timestamp": 1483313063,
++      "to_asset_type": "XAU",
++      "total_xau_received": 83584012406,
++      "total_xusd_sent": 683584012406,
++      "tx_pub_key": "1eac7a5ce7dc0cc78172522cef4591a43b0e9aab643ac3b57554fd0dbc8ba86a",
++      "unlock_time": 0
      }
--  ]
-+  ],
-+  "pending": [],
-+  "pool": [],
-+  "failed": []
+   ]
  }
- ```
- 
- #### get_address_info
- 
--Get the list of all possible spendings. Used when calcualted the wallet balance.
-+Get the list of all possible spendings. Used when calculating the wallet balance.
- 
- ```bash
--curl  -w "\n" -X POST http://127.0.0.1:1984/get_address_info -d '{"address": "A2VTvE8bC9APsWFn3mQzgW8Xfcy2SP2CRUArD6ZtthNaWDuuvyhtBcZ8WDuYMRt1HhcnNQvpXVUavEiZ9waTbyBhP6RM8TV", "view_key": "041a241325326f9d86519b714a9b7f78b29111551757eeb6334d39c21f8b7400"}'
-+curl  -w "\n" -X POST http://127.0.0.1:1984/get_address_info -d '{"address": "A2VTvE8bC9APsWFn3mQzgW8Xfcy2SP2CRUArD6ZtthNaWDuuvyhtBcZ8WDuYMRt1HhcnNQvpXVUavEiZ9waTbyBhP6RM8TV", "view_key": "041a241325326f9d86519b714a9b7f78b29111551757eeb6334d39c21f8b7400", "asset_type": "XHV"}'
- ```
- 
- Output (only part shown):
-@@ -446,6 +444,7 @@
+@@ -446,6 +521,7 @@
    "spent_outputs": [
      {
        "amount": 13683584012406,
@@ -171,7 +172,7 @@
        "key_image": "437518836c315bf989c5cc28b935280345ed672d727122f6d6c5c5ff32e98224",
        "mixin": 0,
        "out_index": 0,
-@@ -453,6 +452,7 @@
+@@ -453,15 +529,30 @@
      },
      {
        "amount": 13683584012406,
@@ -179,7 +180,32 @@
        "key_image": "ac3088ce17cc608bcf86db65e9061fe4b9b02573b997944e4ebf7d8e64e4a3b4",
        "mixin": 0,
        "out_index": 0,
-@@ -488,8 +488,8 @@
+       "tx_pub_key": ""
++    },
++    {
++      "amount": 683584012406,
++      "asset_type": "XUSD",
++      "key_image": "937518836c315bf989c5cc28b935280345ed672d727122f6d6c5c5ff32e98224",
++      "mixin": 0,
++      "out_index": 0,
++      "tx_pub_key": ""
+     }
+   ],
+   "start_height": 855633,
+-  "total_received": 13481878608141995,
+-  "total_sent": 4699871131811773
++  "total_xau_received": 683584012406,
++  "total_xau_sent": 0,
++  "total_xhv_received": 43388479628538,
++  "total_xhv_sent": 26307857254378,
++  "total_xusd_received": 3683584012406,
++  "total_xusd_sent": 683584012406,
++  // "total_" + xAsset + "_received": <Integer>,
++  // "total_" + xAsset + "_sent": <Integer>
+ }
+ ```
+ 
+@@ -488,8 +579,8 @@
    "status": "OK",
    "tx_hash": "bfbfbb3bfa169731a092891795be1c3c923a018882ac0efc0ed3e79e2d2b2e54",
    "tx_height": 960491,
@@ -190,7 +216,7 @@
  }
  ```
  
-@@ -497,10 +497,11 @@
+@@ -497,10 +588,11 @@
  
  Get the list of all outputs with key images which could mean that the outouts
  had already been spent. Thus they can't be used again. It is a job of the frontend
